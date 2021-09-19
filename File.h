@@ -5,8 +5,26 @@
 #ifndef PROGRESSBAR_FILE_H
 #define PROGRESSBAR_FILE_H
 
+#include <iostream>
+#include <stdio.h>
+
+using namespace std;
 
 class File {
+public:
+    File(const char *filename);
+
+    ~File();
+
+    int getSize() const {
+        return fileSize;
+
+    }
+
+
+private:
+    FILE *file;
+    int fileSize;
 
 };
 
