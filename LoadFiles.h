@@ -6,7 +6,7 @@
 #define PROGRESSBAR_LOADFILES_H
 
 
-class LoadFIles {
+class LoadFiles {
 
 };
 
