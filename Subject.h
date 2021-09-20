@@ -5,8 +5,6 @@
 #ifndef PROGRESSBAR_SUBJECT_H
 #define PROGRESSBAR_SUBJECT_H
 
-#endif //PROGRESSBAR_SUBJECT_H
-
 #include "Observer.h"
 
 class Subject {
@@ -18,3 +16,5 @@ public:
     virtual void notifyObservers() const = 0;
 
 };
+
+#endif //PROGRESSBAR_SUBJECT_H
