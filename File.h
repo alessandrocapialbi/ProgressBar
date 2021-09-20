@@ -18,7 +18,6 @@ public:
 
     int getSize() const {
         return fileSize;
-
     }
 
 
