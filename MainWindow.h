@@ -17,11 +17,11 @@ class MainWindow : public Observer, public QMainWindow {
 public:
     MainWindow(LoadFiles *lF, QWidget *parent = 0);
 
-    ~MainWindow() {
+    virtual ~MainWindow() {
         loadFiles->removeObserver(this);
     }
 
-    void update() override;
+    virtual void update() override;
 
     const LoadFiles *getLoadFiles() const {
         return loadFiles;

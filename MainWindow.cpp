@@ -15,3 +15,7 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
 
 
 };
+
+void MainWindow::update() {
+
+}
