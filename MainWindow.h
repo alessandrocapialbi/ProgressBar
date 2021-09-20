@@ -9,7 +9,9 @@
 #include "Observer.h"
 #include <memory>
 #include <QMainWindow>
+#include <QProgressBar>
 #include <QWidget>
+#include <QPushButton>
 
 class MainWindow : public Observer, public QMainWindow {
 public:
@@ -28,6 +30,9 @@ public:
 
 private:
     LoadFiles *loadFiles;
+    QProgressBar *fileProgressBar;
+    QProgressBar *overallProgressBar;
+    QPushButton *load;
 
 
 };
