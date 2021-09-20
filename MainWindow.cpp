@@ -8,8 +8,10 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
     loadFiles->registerObserver(this);
 
     this->setWindowTitle("Progress Bar for loading files");
-    this->setFixedSize(800, 600);
+    this->setFixedSize(QSize(800, 600));
 
+    fileProgressBar = new QProgressBar(this);
+    fileProgressBar->setGeometry(QRect(QPoint(150, 170), QSize(300, 30)));
     fileProgressBar->setMinimum(0);
     fileProgressBar->setMaximum(100);
 
