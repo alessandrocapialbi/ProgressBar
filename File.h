@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//Class that handles open and closing of files.
 class File {
 public:
     File(const char *filename);
