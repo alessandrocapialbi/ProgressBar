@@ -9,6 +9,7 @@
 #include "Observer.h"
 #include <memory>
 #include <QMainWindow>
+#include <QLabel>
 #include <QProgressBar>
 #include <QWidget>
 #include <QPushButton>
@@ -27,12 +28,15 @@ public:
         return loadFiles;
     }
 
+    void load();
+
 
 private:
     LoadFiles *loadFiles;
     QProgressBar *fileProgressBar;
+    QLabel *title;
     QProgressBar *overallProgressBar;
-    QPushButton *load;
+    QPushButton *browseButton;
 
 
 };
