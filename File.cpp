@@ -18,7 +18,7 @@ File::File(const char *filename) : file(fopen(filename, "r")), fileSize(0) {
 }
 
 File::~File() {
-    if (fclose(file)) {
+    if (fclose(file)) { //If it doesn't return 0, it means that the file hasn't been closed, so throws an exception.
         throw runtime_error("Failed to close file!");
     }
 }
