@@ -19,7 +19,7 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-target_link_libraries(ProgressBar
+target_link_libraries(core
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets

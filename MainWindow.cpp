@@ -3,3 +3,8 @@
 //
 
 #include "MainWindow.h"
+
+MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), loadFiles(lF) {
+    loadFiles->registerObserver(this);
+
+};
