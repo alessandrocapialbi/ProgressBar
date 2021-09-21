@@ -5,7 +5,7 @@
 #include "File.h"
 
 
-File::File(const char *filename) : file(fopen(filename, "r")), fileSize(0) {
+File::File(const QString *filename) : file(fopen(filename->toLatin1().data(), "r")), fileSize(0) {
     if (!file)
         throw runtime_error("Error occurred during file opening");
     else {

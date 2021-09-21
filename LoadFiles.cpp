@@ -41,4 +41,5 @@ void LoadFiles::load(QStringList fileName) {
 
 void LoadFiles::handleFile(QString file) {
 
+
 }

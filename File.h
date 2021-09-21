@@ -7,13 +7,14 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <QString>
 
 using namespace std;
 
 //Class that handles open and closing of files.
 class File {
 public:
-    File(const char *filename);
+    File(const QString *filename);
 
     ~File();
 

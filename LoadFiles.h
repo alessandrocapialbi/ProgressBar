@@ -6,6 +6,7 @@
 #define PROGRESSBAR_LOADFILES_H
 
 #include "Subject.h"
+#include "File.h"
 #include <QStringList>
 #include <iostream>
 #include <list>
