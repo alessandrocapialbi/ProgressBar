@@ -16,6 +16,7 @@
 #include <QFileDialog>
 #include <QTextEdit>
 #include <QPushButton>
+#include <QPropertyAnimation>
 
 using namespace std;
 
@@ -42,12 +43,13 @@ private slots:
 
 private:
     LoadFiles *loadFiles;
-    QProgressBar *fileProgressBar;
-    QTextEdit *textArea;
-    QLabel *title;
-    QProgressBar *overallProgressBar;
+    unique_ptr<QProgressBar> fileProgressBar;
+    unique_ptr<QTextEdit> textArea;
+    unique_ptr<QLabel> title;
+    unique_ptr<QProgressBar> overallProgressBar;
     QPushButton *browseButton;
-    QFileDialog *browseWindow;
+    unique_ptr<QFileDialog> browseWindow;
+    unique_ptr<QPropertyAnimation> propertyAnimation;
 
 
 };
