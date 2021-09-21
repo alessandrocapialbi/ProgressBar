@@ -26,6 +26,11 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
     browseButton = new QPushButton("Browse file", this);
     browseButton->setGeometry(QRect(QPoint(190, 220), QSize(200, 30)));
 
+    textArea = new QTextEdit(this);
+    textArea->setGeometry(QRect(QPoint(190, 300), QSize(500, 140)));
+    textArea->setText("---> File log\n");
+    textArea->setReadOnly(true);
+
     // Connect button signal to appropriate slot
     connect(browseButton, SIGNAL (released()), this, SLOT (load()));
 
@@ -38,6 +43,6 @@ void MainWindow::update() {
 
 void MainWindow::load() {
 
-    QString fileName = QFileDialog::getOpenFileName(this, "Open a file", "C://");
+    QString fileName = QFileDialog::getOpenFileName(this, "Open a file", "C://", "*.txt");
 
 }

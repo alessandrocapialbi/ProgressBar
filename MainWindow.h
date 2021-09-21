@@ -13,6 +13,7 @@
 #include <QProgressBar>
 #include <QWidget>
 #include <QFileDialog>
+#include <QTextEdit>
 #include <QPushButton>
 
 class MainWindow : public QMainWindow, public Observer {
@@ -39,6 +40,7 @@ private slots:
 private:
     LoadFiles *loadFiles;
     QProgressBar *fileProgressBar;
+    QTextEdit *textArea;
     QLabel *title;
     QProgressBar *overallProgressBar;
     QPushButton *browseButton;
