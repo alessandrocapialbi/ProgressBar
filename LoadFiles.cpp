@@ -21,11 +21,11 @@ void LoadFiles::notifyObservers() const {
     }
 }
 
-void LoadFiles::load(QStringList fileName) {
+void LoadFiles::load(QStringList fileNames) {
 
 
     try {
-        filesNumber = static_cast<int>(files.size());
+        filesNumber = static_cast<int>(fileNames.size());
         if (!filesNumber) {
             throw runtime_error("No files provided.");
         }
@@ -33,7 +33,7 @@ void LoadFiles::load(QStringList fileName) {
         cerr << e.what() << endl;
     }
 
-    for (auto &it: files) {
+    for (auto &it: fileNames) {
         handleFile(it);
     }
 

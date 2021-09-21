@@ -25,9 +25,12 @@ public:
 
     void handleFile(const QString &it);
 
+    bool isLoaded() const {
+        return loaded;
+    }
+
 private:
     list<Observer *> observers;
-    QStringList files;
     bool loaded;
     int filesNumber, fileSize;
     QString filename;

@@ -20,8 +20,8 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
 
     fileProgressBar = new QProgressBar(this);
     fileProgressBar->setGeometry(QRect(QPoint(190, 170), QSize(400, 30)));
-    fileProgressBar->setMinimum(0);
-    fileProgressBar->setMaximum(100);
+    fileProgressBar->setRange(0, 100);
+    fileProgressBar->setValue(0);
 
     browseButton = new QPushButton("Browse file", this);
     browseButton->setGeometry(QRect(QPoint(190, 220), QSize(200, 30)));
@@ -39,11 +39,17 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
 
 void MainWindow::update() {
 
+    if (loadFiles->isLoaded()) {
+        setAnimated(fileProgressBar);
+
+
+    }
+
 }
 
 void MainWindow::load() {
 
     browseWindow = new QFileDialog(this);
-    QStringList fileNames = browseWindow->getOpenFileNames(this, "Open a file", "C://", ".txt");
+    QStringList fileNames = browseWindow->getOpenFileNames(this, "Open a file", "C://", "*.*");
     loadFiles->load(fileNames);
 }

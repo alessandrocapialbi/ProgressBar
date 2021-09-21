@@ -12,7 +12,8 @@ File::File(const QString &filename) : file(fopen(filename.toLatin1().data(), "r"
         fseek(file, 0, SEEK_END); //Point to the end of the file.
         fileSize = ftell(
                 file); //It gives the file size based on the pointer given by fseek (from the beginning to the end).
-        cout << "File " << filename.toStdString() << " open successfully!" << ", size: " << fileSize << endl;
+        cout << "File " << filename.toStdString() << " open successfully!" << ", size: " << fileSize << " bytes"
+             << endl;
     }
 
 }
