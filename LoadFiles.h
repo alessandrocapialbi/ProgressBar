@@ -23,13 +23,14 @@ public:
 
     void load(QStringList fileName);
 
-    void handleFile(QString file);
+    void handleFile(const QString &it);
 
 private:
     list<Observer *> observers;
     QStringList files;
     bool loaded;
-    int filesNumber;
+    int filesNumber, fileSize;
+    QString filename;
 
 
 };

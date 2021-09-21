@@ -33,13 +33,33 @@ void LoadFiles::load(QStringList fileName) {
         cerr << e.what() << endl;
     }
 
-    for (auto &itr: files) {
-        handleFile(itr);
+    for (auto &it: files) {
+        handleFile(it);
     }
 
 }
 
-void LoadFiles::handleFile(QString file) {
+void LoadFiles::handleFile(const QString &it) {
 
 
+    try {
+
+        File file(it);
+
+        filename = QString(it);
+        fileSize = file.getSize();
+        loaded = true;
+        notifyObservers();
+
+    } catch (runtime_error &e) {
+
+        cerr << e.what() << endl << endl;
+
+        filename = QString(it);
+        loaded = false;
+        notifyObservers();
+
+    } catch (...) {
+        cerr << "Unknown exception caught!" << endl;
+    }
 }

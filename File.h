@@ -14,7 +14,7 @@ using namespace std;
 //Class that handles open and closing of files.
 class File {
 public:
-    File(const QString *filename);
+    File(const QString &filename);
 
     ~File();
 

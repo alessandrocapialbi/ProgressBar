@@ -5,14 +5,14 @@
 #include "File.h"
 
 
-File::File(const QString *filename) : file(fopen(filename->toLatin1().data(), "r")), fileSize(0) {
+File::File(const QString &filename) : file(fopen(filename.toLatin1().data(), "r")), fileSize(0) {
     if (!file)
         throw runtime_error("Error occurred during file opening");
     else {
         fseek(file, 0, SEEK_END); //Point to the end of the file.
         fileSize = ftell(
                 file); //It gives the file size based on the pointer given by fseek (from the beginning to the end).
-        cout << "File " << filename << " open successfully!" << ", size: " << fileSize << endl;
+        cout << "File " << filename.toStdString() << " open successfully!" << ", size: " << fileSize << endl;
     }
 
 }
