@@ -38,4 +38,6 @@ void MainWindow::update() {
 
 void MainWindow::load() {
 
+    QString fileName = QFileDialog::getOpenFileName(this, "Open a file", "C://");
+
 }

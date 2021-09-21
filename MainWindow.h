@@ -12,9 +12,12 @@
 #include <QLabel>
 #include <QProgressBar>
 #include <QWidget>
+#include <QFileDialog>
 #include <QPushButton>
 
-class MainWindow : public Observer, public QMainWindow {
+class MainWindow : public QMainWindow, public Observer {
+Q_OBJECT
+
 public:
     MainWindow(LoadFiles *lF, QWidget *parent = 0);
 
@@ -28,6 +31,8 @@ public:
         return loadFiles;
     }
 
+private slots:
+
     void load();
 
 
@@ -37,6 +42,7 @@ private:
     QLabel *title;
     QProgressBar *overallProgressBar;
     QPushButton *browseButton;
+    QFileDialog *browseWindow;
 
 
 };
