@@ -43,6 +43,7 @@ void MainWindow::update() {
 
 void MainWindow::load() {
 
-    QString fileName = QFileDialog::getOpenFileName(this, "Open a file", "C://", "*.txt");
-
+    browseWindow = new QFileDialog(this);
+    QStringList fileNames = browseWindow->getOpenFileNames(this, "Open a file", "C://", ".txt");
+    loadFiles->load(fileNames);
 }

@@ -8,6 +8,7 @@
 #include "LoadFiles.h"
 #include "Observer.h"
 #include <memory>
+#include <iostream>
 #include <QMainWindow>
 #include <QLabel>
 #include <QProgressBar>
@@ -15,6 +16,8 @@
 #include <QFileDialog>
 #include <QTextEdit>
 #include <QPushButton>
+
+using namespace std;
 
 class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT

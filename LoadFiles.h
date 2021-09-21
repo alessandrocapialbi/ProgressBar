@@ -6,6 +6,8 @@
 #define PROGRESSBAR_LOADFILES_H
 
 #include "Subject.h"
+#include <QStringList>
+#include <iostream>
 #include <list>
 
 using namespace std;
@@ -18,12 +20,15 @@ public:
 
     void notifyObservers() const override;
 
-    void load(list<char *> filenames);
+    void load(QStringList fileName);
+
+    void handleFile(QString file);
 
 private:
     list<Observer *> observers;
-    list<char *> files;
+    QStringList files;
     bool loaded;
+    int filesNumber;
 
 
 };

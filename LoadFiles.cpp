@@ -16,8 +16,29 @@ void LoadFiles::removeObserver(Observer *o) {
 
 void LoadFiles::notifyObservers() const {
 
+    for (const auto &i: observers) {
+        i->update();
+    }
 }
 
-void LoadFiles::load(list<char *> filenames) {
+void LoadFiles::load(QStringList fileName) {
+
+
+    try {
+        filesNumber = static_cast<int>(files.size());
+        if (!filesNumber) {
+            throw runtime_error("No files provided.");
+        }
+    } catch (runtime_error &e) {
+        cerr << e.what() << endl;
+    }
+
+    for (auto &itr: files) {
+        handleFile(itr);
+    }
+
+}
+
+void LoadFiles::handleFile(QString file) {
 
 }
