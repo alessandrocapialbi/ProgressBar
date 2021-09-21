@@ -7,8 +7,13 @@
 MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), loadFiles(lF) {
     loadFiles->registerObserver(this);
 
-    this->setWindowTitle("Progress Bar for loading files");
+    this->setWindowTitle("Progress Bar for loading files - Powered by QT");
     this->setFixedSize(QSize(800, 600));
+    QPixmap bkgnd("resources/bkngd.jpg");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background, bkgnd);
+    this->setPalette(palette);
 
     title = new QLabel("Load your PC files!", this);
     title->setGeometry(QRect(QPoint(100, 60), QSize(400, 100)));
@@ -50,6 +55,6 @@ void MainWindow::update() {
 void MainWindow::load() {
 
     browseWindow = new QFileDialog(this);
-    QStringList fileNames = browseWindow->getOpenFileNames(this, "Open a file", "C://", "*.*");
+    QStringList fileNames = browseWindow->getOpenFileNames(this, "Open a file", "C://", "*.txt");
     loadFiles->load(fileNames);
 }

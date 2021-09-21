@@ -25,12 +25,12 @@ void LoadFiles::load(QStringList fileNames) {
 
 
     try {
-        filesNumber = static_cast<int>(fileNames.size());
+        filesNumber = static_cast<int>(fileNames.size()); //Number of files open by the user during browsing.
         if (!filesNumber) {
             throw runtime_error("No files provided.");
         }
-    } catch (runtime_error &e) {
-        cerr << e.what() << endl;
+    } catch (runtime_error &exc) {
+        cerr << exc.what() << endl;
     }
 
     for (auto &it: fileNames) {
@@ -51,9 +51,9 @@ void LoadFiles::handleFile(const QString &it) {
         loaded = true;
         notifyObservers();
 
-    } catch (runtime_error &e) {
+    } catch (runtime_error &exc) {
 
-        cerr << e.what() << endl << endl;
+        cerr << exc.what() << endl << endl;
 
         filename = QString(it);
         loaded = false;
