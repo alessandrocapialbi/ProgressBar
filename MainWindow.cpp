@@ -32,7 +32,7 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
     browseButton->setGeometry(QRect(QPoint(190, 220), QSize(200, 30)));
 
     textArea = new QTextEdit(this);
-    textArea->setGeometry(QRect(QPoint(190, 300), QSize(500, 140)));
+    textArea->setGeometry(QRect(QPoint(190, 275), QSize(500, 140)));
     textArea->setText("---> File log\n");
     textArea->setReadOnly(true);
 
@@ -44,11 +44,16 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
 
 void MainWindow::update() {
 
+    QString log;
     if (loadFiles->isLoaded()) {
-        setAnimated(fileProgressBar);
-
-
+        textArea->setTextColor(QColorConstants::Svg::green);
+        log = "✅ Loaded file '" + QString(loadFiles->getFilename()) + QString("' successfully (") +
+              QString::number(loadFiles->getFileSize()) + QString(" bytes).") + "\n";
+    } else {
+        textArea->setTextColor(QColorConstants::Svg::red);
+        log = "❌ Could not load file '" + loadFiles->getFilename();
     }
+    textArea->append(log);
 
 }
 

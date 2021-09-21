@@ -25,6 +25,14 @@ public:
 
     void handleFile(const QString &it);
 
+    const QString &getFilename() const {
+        return filename;
+    };
+
+    int getFileSize() const {
+        return fileSize;
+    };
+
     bool isLoaded() const {
         return loaded;
     }
