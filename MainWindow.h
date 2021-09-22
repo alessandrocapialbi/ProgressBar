@@ -49,7 +49,7 @@ private:
     unique_ptr<QProgressBar> overallProgressBar;
     QPushButton *browseButton;
     unique_ptr<QFileDialog> browseWindow;
-    unique_ptr<QPropertyAnimation> propertyAnimation;
+    unique_ptr<QPropertyAnimation> progressBarAnimation;
 
 
 };

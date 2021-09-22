@@ -29,6 +29,10 @@ public:
         return filename;
     };
 
+    int getFilesNumber() const {
+        return filesNumber;
+    }
+
     int getFileSize() const {
         return fileSize;
     };

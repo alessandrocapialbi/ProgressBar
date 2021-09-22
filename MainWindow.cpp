@@ -46,9 +46,12 @@ void MainWindow::update() {
 
     QString log;
     if (loadFiles->isLoaded()) {
+
+
         textArea->setTextColor(QColorConstants::Svg::green);
         log = "✅ Loaded file '" + QString(loadFiles->getFilename()) + QString("' successfully (") +
               QString::number(loadFiles->getFileSize()) + QString(" bytes).") + "\n";
+
 
     } else {
         textArea->setTextColor(QColorConstants::Svg::red);

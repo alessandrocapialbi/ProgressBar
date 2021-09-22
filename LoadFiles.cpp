@@ -63,3 +63,4 @@ void LoadFiles::handleFile(const QString &it) {
         cerr << "Unknown exception caught!" << endl;
     }
 }
+
