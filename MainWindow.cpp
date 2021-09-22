@@ -16,11 +16,13 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
     this->setPalette(palette);
 
     title = unique_ptr<QLabel>(new QLabel("Load your PC files!", this));
+    title->setStyleSheet("color: blue");
     title->setGeometry(QRect(QPoint(100, 60), QSize(400, 100)));
     title->setWordWrap(true);
     title->setAlignment(Qt::AlignCenter);
     QFont font = title->font();
     font.setPointSize(20);
+    font.setBold(true);
     title->setFont(font);
 
     fileProgressBar = unique_ptr<QProgressBar>(new QProgressBar(this));
@@ -33,6 +35,8 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
 
     textArea = unique_ptr<QTextEdit>(new QTextEdit(this));
     textArea->setGeometry(QRect(QPoint(190, 275), QSize(500, 140)));
+    textArea->setTextColor(QColorConstants::Svg::red);
+    textArea->setFontPointSize(14);
     textArea->setText("---> File log\n");
     textArea->setReadOnly(true);
 
@@ -48,7 +52,7 @@ void MainWindow::update() {
     if (loadFiles->isLoaded()) {
 
 
-        textArea->setTextColor(QColorConstants::Svg::green);
+        textArea->setTextColor(QColorConstants::Svg::darkgreen);
         log = "✅ Loaded file '" + QString(loadFiles->getFilename()) + QString("' successfully (") +
               QString::number(loadFiles->getFileSize()) + QString(" bytes).") + "\n";
 
