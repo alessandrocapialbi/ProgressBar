@@ -8,6 +8,8 @@
 #include "LoadFiles.h"
 #include "Observer.h"
 #include <memory>
+#include <unistd.h>
+#include <cfloat>
 #include <iostream>
 #include <QMainWindow>
 #include <QLabel>

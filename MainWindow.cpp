@@ -50,12 +50,16 @@ void MainWindow::update() {
 
     QString log;
     if (loadFiles->isLoaded()) {
-
+        float progress = 0.0;
+        while (progress < (1 + FLT_EPSILON)) {
+            sleep(1);
+            fileProgressBar->setValue(progress * 100);
+            progress += 0.20;
+        }
 
         textArea->setTextColor(QColorConstants::Svg::darkgreen);
         log = "✅ Loaded file '" + QString(loadFiles->getFilename()) + QString("' successfully (") +
               QString::number(loadFiles->getFileSize()) + QString(" bytes).") + "\n";
-
 
     } else {
         textArea->setTextColor(QColorConstants::Svg::red);
