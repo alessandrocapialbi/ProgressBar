@@ -29,11 +29,19 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
     fileProgressBar->setGeometry(QRect(QPoint(190, 170), QSize(400, 30)));
     fileProgressBar->setRange(0, 100);
     fileProgressBar->setValue(0);
+    fileProgressBar->setStyleSheet("color: black");
+    fileProgressBar->setFormat("File Progress Bar");
+    QPalette p = fileProgressBar->palette();
+    p.setColor(QPalette::Highlight, Qt::darkGreen);
+    fileProgressBar->setPalette(p);
 
     overallProgressBar = unique_ptr<QProgressBar>(new QProgressBar(this));
     overallProgressBar->setGeometry(QRect(QPoint(190, 220), QSize(400, 30)));
     overallProgressBar->setRange(0, 100);
     overallProgressBar->setValue(0);
+    overallProgressBar->setStyleSheet("color: black");
+    overallProgressBar->setFormat("Overall Progress Bar");
+    overallProgressBar->setPalette(p);
 
     browseButton = new QPushButton("Browse files", this);
     browseButton->setGeometry(QRect(QPoint(190, 275), QSize(200, 30)));
@@ -66,17 +74,16 @@ void MainWindow::update() {
             progress += 0.20;
         }
 
+        sleep(0.5);
         overallProgressBar->setValue(overallProgressBar->value() + 100 / loadFiles->getFilesNumber());
-
-        if (loadedFiles != loadFiles->getFilesNumber()) {
-            textArea->setTextColor(QColorConstants::Svg::darkgreen);
-            log = "✅ Loaded file '" + QString(loadFiles->getFilename()) + QString("' successfully (") +
-                  QString::number(loadFiles->getFileSize()) + QString(" bytes).") + "\n";
-        }
 
         if (loadedFiles == loadFiles->getFilesNumber() && overallProgressBar->value() != 100)  /* In case the user loads a number of files
  *          that are not factors of 100. */
             overallProgressBar->setValue(100);
+
+        textArea->setTextColor(QColorConstants::Svg::darkgreen);
+        log = "✅ Loaded file '" + QString(loadFiles->getFilename()) + QString("' successfully (") +
+              QString::number(loadFiles->getFileSize()) + QString(" bytes).") + "\n";
 
 
     } else {
