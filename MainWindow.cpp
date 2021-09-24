@@ -30,14 +30,19 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
     fileProgressBar->setRange(0, 100);
     fileProgressBar->setValue(0);
 
+    overallProgressBar = unique_ptr<QProgressBar>(new QProgressBar(this));
+    overallProgressBar->setGeometry(QRect(QPoint(190, 220), QSize(400, 30)));
+    overallProgressBar->setRange(0, 100);
+    overallProgressBar->setValue(0);
+
     browseButton = new QPushButton("Browse files", this);
-    browseButton->setGeometry(QRect(QPoint(190, 220), QSize(200, 30)));
+    browseButton->setGeometry(QRect(QPoint(190, 275), QSize(200, 30)));
 
     textArea = unique_ptr<QTextEdit>(new QTextEdit(this));
-    textArea->setGeometry(QRect(QPoint(190, 275), QSize(500, 140)));
+    textArea->setGeometry(QRect(QPoint(190, 335), QSize(500, 140)));
     textArea->setTextColor(QColorConstants::Svg::red);
     textArea->setFontPointSize(14);
-    textArea->setText("---> File log\n");
+    textArea->setText("► File log\n");
     textArea->setReadOnly(true);
 
     // Connect button signal to appropriate slot
@@ -46,20 +51,33 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
 
 };
 
+static int loadedFiles = 0;
+
 void MainWindow::update() {
 
     QString log;
     if (loadFiles->isLoaded()) {
+
+        loadedFiles++;
         float progress = 0.0;
-        while (progress < (1 + FLT_EPSILON)) {
+        while (progress < (1 + FLT_EPSILON)) { //Everytime the progressBar goes by 20% forward till 100%.
             sleep(1);
             fileProgressBar->setValue(progress * 100);
             progress += 0.20;
         }
 
-        textArea->setTextColor(QColorConstants::Svg::darkgreen);
-        log = "✅ Loaded file '" + QString(loadFiles->getFilename()) + QString("' successfully (") +
-              QString::number(loadFiles->getFileSize()) + QString(" bytes).") + "\n";
+        overallProgressBar->setValue(overallProgressBar->value() + 100 / loadFiles->getFilesNumber());
+
+        if (loadedFiles != loadFiles->getFilesNumber()) {
+            textArea->setTextColor(QColorConstants::Svg::darkgreen);
+            log = "✅ Loaded file '" + QString(loadFiles->getFilename()) + QString("' successfully (") +
+                  QString::number(loadFiles->getFileSize()) + QString(" bytes).") + "\n";
+        }
+
+        if (loadedFiles == loadFiles->getFilesNumber() && overallProgressBar->value() != 100)  /* In case the user loads a number of files
+ *          that are not factors of 100. */
+            overallProgressBar->setValue(100);
+
 
     } else {
         textArea->setTextColor(QColorConstants::Svg::red);

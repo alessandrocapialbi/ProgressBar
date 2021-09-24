@@ -47,11 +47,10 @@ private:
     LoadFiles *loadFiles;
     unique_ptr<QProgressBar> fileProgressBar;
     unique_ptr<QTextEdit> textArea;
-    unique_ptr<QLabel> title;
+    unique_ptr<QLabel> title, fileProgress, overallProgress;
     unique_ptr<QProgressBar> overallProgressBar;
     QPushButton *browseButton;
     unique_ptr<QFileDialog> browseWindow;
-    unique_ptr<QPropertyAnimation> progressBarAnimation;
 
 
 };
