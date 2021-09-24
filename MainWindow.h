@@ -8,7 +8,8 @@
 #include "LoadFiles.h"
 #include "Observer.h"
 #include <memory>
-#include <unistd.h>
+#include <chrono>
+#include <thread>
 #include <cfloat>
 #include <iostream>
 #include <QMainWindow>
