@@ -12,6 +12,8 @@
 #include <cfloat>
 #include <iostream>
 #include <QMainWindow>
+#include <QApplication>
+#include <QProcess>
 #include <QLabel>
 #include <QProgressBar>
 #include <QWidget>
@@ -26,7 +28,7 @@ class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT
 
 public:
-    MainWindow(LoadFiles *lF, QWidget *parent = 0);
+    MainWindow(LoadFiles *lF, QApplication *app, QWidget *parent = 0);
 
     virtual ~MainWindow() {
         loadFiles->removeObserver(this);
@@ -42,14 +44,17 @@ private slots:
 
     void load();
 
+    void resetWindow();
+
 
 private:
     LoadFiles *loadFiles;
+    QApplication *application;
     unique_ptr<QProgressBar> fileProgressBar;
     unique_ptr<QTextEdit> textArea;
     unique_ptr<QLabel> title, fileProgress, overallProgress;
     unique_ptr<QProgressBar> overallProgressBar;
-    QPushButton *browseButton;
+    QPushButton *browseButton, *reset;
     unique_ptr<QFileDialog> browseWindow;
 
 

@@ -4,7 +4,8 @@
 
 #include "MainWindow.h"
 
-MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), loadFiles(lF) {
+MainWindow::MainWindow(LoadFiles *lF, QApplication *app, QWidget *parent) : QMainWindow(parent), loadFiles(lF),
+                                                                            application(app) {
     loadFiles->registerObserver(this);
 
     this->setWindowTitle("Progress Bar for loading files - Powered by QT");
@@ -45,6 +46,8 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
 
     browseButton = new QPushButton("Browse files", this);
     browseButton->setGeometry(QRect(QPoint(190, 275), QSize(200, 30)));
+    reset = new QPushButton("Reset", this);
+    reset->setGeometry(QRect(QPoint(410, 275), QSize(200, 30)));
 
     textArea = unique_ptr<QTextEdit>(new QTextEdit(this));
     textArea->setGeometry(QRect(QPoint(190, 335), QSize(500, 140)));
@@ -55,6 +58,7 @@ MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), lo
 
     // Connect button signal to appropriate slot
     connect(browseButton, SIGNAL (released()), this, SLOT (load()));
+    connect(reset, SIGNAL (released()), this, SLOT (resetWindow()));
 
 
 };
@@ -99,4 +103,9 @@ void MainWindow::load() {
     browseWindow = unique_ptr<QFileDialog>(new QFileDialog(this));
     QStringList fileNames = browseWindow->getOpenFileNames(this, "Open a file", "C://", "*.txt");
     loadFiles->load(fileNames);
+}
+
+void MainWindow::resetWindow() {
+    application->quit();
+    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
 }
