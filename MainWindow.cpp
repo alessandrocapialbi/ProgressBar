@@ -74,15 +74,13 @@ void MainWindow::update() {
         float progress = 0.0;
         while (progress < (1 + FLT_EPSILON)) { //Everytime the progressBar goes by 20% forward till 100%.
 
-            std::this_thread::sleep_for(std::chrono::milliseconds(700));
+            this_thread::sleep_for(std::chrono::milliseconds(500));
             fileProgressBar->setFormat(QString::number(progress * 100) + "%");
             fileProgressBar->setValue(progress * 100);
             progress += 0.20;
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(900));
-        overallProgressBar->setFormat(
-                QString::number(overallProgressBar->value() + 100 / loadFiles->getFilesNumber()) + "%");
+        this_thread::sleep_for(std::chrono::milliseconds(700));
         overallProgressBar->setValue(overallProgressBar->value() + 100 / loadFiles->getFilesNumber());
 
         if (loadedFiles == loadFiles->getFilesNumber() && overallProgressBar->value() != 100)  /* In case the user loads a number of files
