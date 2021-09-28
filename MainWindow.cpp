@@ -4,8 +4,8 @@
 
 #include "MainWindow.h"
 
-MainWindow::MainWindow(LoadFiles *lF, QApplication *app, QWidget *parent) : QMainWindow(parent), loadFiles(lF),
-                                                                            application(app) {
+MainWindow::MainWindow(LoadFiles *lF, QWidget *parent) : QMainWindow(parent), loadFiles(lF) {
+
     loadFiles->registerObserver(this);
 
     this->setWindowTitle("Progress Bar for loading files - Powered by QT");
@@ -46,8 +46,6 @@ MainWindow::MainWindow(LoadFiles *lF, QApplication *app, QWidget *parent) : QMai
 
     browseButton = new QPushButton("Browse files", this);
     browseButton->setGeometry(QRect(QPoint(190, 275), QSize(200, 30)));
-    reset = new QPushButton("Reset", this);
-    reset->setGeometry(QRect(QPoint(410, 275), QSize(200, 30)));
 
     textArea = unique_ptr<QTextEdit>(new QTextEdit(this));
     textArea->setGeometry(QRect(QPoint(190, 335), QSize(500, 140)));
@@ -58,7 +56,6 @@ MainWindow::MainWindow(LoadFiles *lF, QApplication *app, QWidget *parent) : QMai
 
     // Connect button signal to appropriate slot
     connect(browseButton, SIGNAL (released()), this, SLOT (load()));
-    connect(reset, SIGNAL (released()), this, SLOT (resetWindow()));
 
 
 };

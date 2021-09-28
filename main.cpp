@@ -8,15 +8,15 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    QApplication *app = new QApplication(argc, argv);
+    QApplication app(argc, argv);
 
     LoadFiles loader;
 
-    MainWindow mainWindow(&loader, app);
+    MainWindow mainWindow(&loader);
 
     mainWindow.show();
 
-    return app->exec();
+    return app.exec();
 
 
 }

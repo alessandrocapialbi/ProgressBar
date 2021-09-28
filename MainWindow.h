@@ -29,7 +29,7 @@ class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT
 
 public:
-    MainWindow(LoadFiles *lF, QApplication *app, QWidget *parent = 0);
+    MainWindow(LoadFiles *lF, QWidget *parent = 0);
 
     virtual ~MainWindow() {
         loadFiles->removeObserver(this);
