@@ -6,14 +6,14 @@
 #include "../File.h"
 
 TEST(TestFile, testNonExistentResource) {
-    ASSERT_THROW(File file("../resources/non_existing_file.jpg"), runtime_error);
+    ASSERT_THROW(File file("resources_test/non_existing_file.jpg"), runtime_error);
 }
 
 TEST(TestFile, testExistentResource) {
-    ASSERT_NO_THROW(File file("../resources/flower.jpeg"));
+    ASSERT_NO_THROW(File file("resources_test/flower.jpeg"));
 }
 
 TEST(TestFile, testSizeForExistentFile) {
-    File file("../resources/flower.jpeg");
+    File file("resources_test/flower.jpeg");
     ASSERT_FALSE(file.getSize() == 0);
 }

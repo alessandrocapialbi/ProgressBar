@@ -2,28 +2,24 @@
 // Created by alessandro on 19/09/21.
 //
 
-#include "LoadFiles.h"
+#include "FileLoader.h"
 
-void LoadFiles::registerObserver(Observer *o) {
+void FileLoader::registerObserver(Observer *o) {
     observers.push_back(o);
-
 }
 
-void LoadFiles::removeObserver(Observer *o) {
+void FileLoader::removeObserver(Observer *o) {
     observers.remove(o);
-
 }
 
-void LoadFiles::notifyObservers() const {
+void FileLoader::notifyObservers() const {
 
     for (const auto &i: observers) {
         i->update();
     }
 }
 
-void LoadFiles::load(QStringList fileNames) {
-
-
+void FileLoader::load(QStringList fileNames) {
     try {
         filesNumber = static_cast<int>(fileNames.size()); //Number of files open by the user during browsing.
         if (!filesNumber) {
@@ -36,29 +32,20 @@ void LoadFiles::load(QStringList fileNames) {
     for (auto &it: fileNames) {
         handleFile(it);
     }
-
 }
 
-void LoadFiles::handleFile(const QString &it) {
-
-
+void FileLoader::handleFile(const QString &it) {
     try {
-
         File file(it);
-
         filename = QString(it);
         fileSize = file.getSize();
         loaded = true;
         notifyObservers();
-
     } catch (runtime_error &exc) {
-
         cerr << exc.what() << endl << endl;
-
         filename = QString(it);
         loaded = false;
         notifyObservers();
-
     } catch (...) {
         cerr << "Unknown exception caught!" << endl;
     }

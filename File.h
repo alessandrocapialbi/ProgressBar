@@ -15,19 +15,13 @@ using namespace std;
 class File {
 public:
     File(const QString &filename);
-
     ~File();
-
     int getSize() const {
         return fileSize;
     }
-
-
 private:
     FILE *file;
     int fileSize;
 
 };
-
-
 #endif //PROGRESSBAR_FILE_H

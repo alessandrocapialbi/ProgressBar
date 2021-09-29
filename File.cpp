@@ -1,10 +1,7 @@
 //
 // Created by alessandro on 19/09/21.
 //
-
 #include "File.h"
-
-
 File::File(const QString &filename) : file(fopen(filename.toLatin1().data(), "r")), fileSize(0) {
     if (!file)
         throw runtime_error("Error occurred during file opening");
@@ -15,9 +12,7 @@ File::File(const QString &filename) : file(fopen(filename.toLatin1().data(), "r"
         cout << "File " << filename.toStdString() << " open successfully!" << ", size: " << fileSize << " bytes"
              << endl;
     }
-
 }
-
 File::~File() {
     if (fclose(file)) { //If it doesn't return 0, it means that the file hasn't been closed, so throws an exception.
         throw runtime_error("Failed to close file!");

@@ -5936,8 +5936,8 @@ void TestEventRepeater::Name(const Type& parameter) { \
             // set up on the first and torn down on the last iteration? If there is no
             // "last" iteration because the tests will repeat forever, always recreate the
             // environments to avoid leaks in case one of the environments is using
-            // resources that are external to this process. Without this check there would
-            // be no way to clean up those external resources automatically.
+            // resources_test that are external to this process. Without this check there would
+            // be no way to clean up those external resources_test automatically.
             const bool recreate_environments_when_repeating =
                     GTEST_FLAG_GET(recreate_environments_when_repeating) ||
                     gtest_repeat_forever;

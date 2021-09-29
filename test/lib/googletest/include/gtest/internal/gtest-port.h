@@ -1795,7 +1795,7 @@ namespace testing {
                 // Destroys the managed object for the current thread, if any.
                 DeleteThreadLocalValue(pthread_getspecific(key_));
 
-                // Releases resources associated with the key.  This will *not*
+                // Releases resources_test associated with the key.  This will *not*
                 // delete managed objects for other threads.
                 GTEST_CHECK_POSIX_SUCCESS_(pthread_key_delete(key_));
             }

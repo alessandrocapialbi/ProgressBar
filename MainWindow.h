@@ -5,7 +5,7 @@
 #ifndef PROGRESSBAR_MAINWINDOW_H
 #define PROGRESSBAR_MAINWINDOW_H
 
-#include "LoadFiles.h"
+#include "FileLoader.h"
 #include "Observer.h"
 #include <memory>
 #include <chrono>
@@ -27,9 +27,8 @@ using namespace std;
 
 class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT
-
 public:
-    MainWindow(LoadFiles *lF, QWidget *parent = 0);
+    MainWindow(FileLoader *lF, QWidget *parent = 0);
 
     virtual ~MainWindow() {
         loadFiles->removeObserver(this);
@@ -37,7 +36,7 @@ public:
 
     virtual void update() override;
 
-    const LoadFiles *getLoadFiles() const {
+    const FileLoader *getLoadFiles() const {
         return loadFiles;
     }
 
@@ -45,11 +44,8 @@ private slots:
 
     void load();
 
-    void resetWindow();
-
-
 private:
-    LoadFiles *loadFiles;
+    FileLoader *loadFiles;
     QApplication *application;
     unique_ptr<QProgressBar> fileProgressBar;
     unique_ptr<QTextEdit> textArea;
@@ -57,9 +53,6 @@ private:
     unique_ptr<QProgressBar> overallProgressBar;
     QPushButton *browseButton, *reset;
     unique_ptr<QFileDialog> browseWindow;
-
-
 };
-
 
 #endif //PROGRESSBAR_MAINWINDOW_H

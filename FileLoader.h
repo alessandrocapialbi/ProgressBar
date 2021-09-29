@@ -2,8 +2,8 @@
 // Created by alessandro on 19/09/21.
 //
 
-#ifndef PROGRESSBAR_LOADFILES_H
-#define PROGRESSBAR_LOADFILES_H
+#ifndef PROGRESSBAR_FILELOADER_H
+#define PROGRESSBAR_FILELOADER_H
 
 #include "Subject.h"
 #include "File.h"
@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class LoadFiles : public Subject {
+class FileLoader : public Subject {
 public:
     void registerObserver(Observer *o) override;
 
@@ -32,23 +32,17 @@ public:
     int getFilesNumber() const {
         return filesNumber;
     }
-
     int getFileSize() const {
         return fileSize;
     };
-
     bool isLoaded() const {
         return loaded;
     }
-
 private:
     list<Observer *> observers;
     bool loaded;
     int filesNumber, fileSize;
     QString filename;
-
-
 };
 
-
-#endif //PROGRESSBAR_LOADFILES_H
+#endif //PROGRESSBAR_FILELOADER_H

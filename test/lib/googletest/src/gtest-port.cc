@@ -131,7 +131,7 @@ namespace testing {
           thread_act_array_t thread_list;
           const kern_return_t status = task_threads(task, &thread_list, &thread_count);
           if (status == KERN_SUCCESS) {
-            // task_threads allocates resources in thread_list and we need to free them
+            // task_threads allocates resources_test in thread_list and we need to free them
             // to avoid leaks.
             vm_deallocate(task,
                           reinterpret_cast<vm_address_t>(thread_list),
